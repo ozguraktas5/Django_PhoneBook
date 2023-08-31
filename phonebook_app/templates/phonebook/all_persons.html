@@ -1,0 +1,22 @@
+{% extends 'base.html' %} 
+
+{% load static %} 
+
+{% block content %} 
+
+{% block css_files %}
+  <link rel="stylesheet" href="{% static 'phonebook_app/css/style.css' %}" />
+{% endblock %}
+
+<h1>Tüm Kişiler</h1>
+<ul>
+  {% for person in persons %}
+  <li>
+    <img class="image" src="{{ person.image.url }}" alt="image" />
+    {{ person.first_name }} {{ person.last_name }} - {{ person.phone_number }}
+    <a href="{% url 'edit_person' person.id %}">Edit</a>
+    <a href="{% url 'delete_person' person.id %}">Delete</a>
+  </li>
+  {% endfor %}
+</ul>
+{% endblock %}
