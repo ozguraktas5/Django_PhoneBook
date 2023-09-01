@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block css_files %} 
+    <link rel="stylesheet" href="{% static 'phonebook_app/css/style.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="container mt-3">
+        <div class="row">
+            <div class="col-12">
+                <form action="{% url 'upload_image' %}" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="input-group">
+                        {{ form }}
+                        <button class="btn btn-outline-primary" type="submit">Yükle</button>
+                    </div>
+                </form>
+            </div>
+            
+        </div>
+    </div>
+{% endblock %}
+
+{% block js_files %} 
+    <script src="{% static 'phonebook_app/js/script.js' %}"></script>
+{% endblock %}

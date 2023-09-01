@@ -1,21 +1,30 @@
-{% extends 'base.html' %} 
+{% extends 'base.html' %}
 
-{% load static %} 
-
-{% block content %} 
+{% load static %}
 
 {% block css_files %}
   <link rel="stylesheet" href="{% static 'phonebook_app/css/style.css' %}" />
-{% endblock %}
+{% endblock %} 
+
+{% block content %}
 
 <h1>Tüm Kişiler</h1>
 <ul>
   {% for person in persons %}
   <li>
-    <img class="image" src="{{ person.image.url }}" alt="image" />
-    {{ person.first_name }} {{ person.last_name }} - {{ person.phone_number }}
-    <a href="{% url 'edit_person' person.id %}">Edit</a>
-    <a href="{% url 'delete_person' person.id %}">Delete</a>
+    <div class="left">
+      <img class="image" src="{{ person.image.url }}"/>
+    </div>
+    <div class="right">
+      <div class="info">
+        {{ person.first_name }} {{ person.last_name }} - {{ person.phone_number }}
+      </div>
+      <div class="buttons">
+        <a class="edit-button" href="{% url 'edit_person' person.id %}">Edit</a>
+        <a class="delete-button" href="{% url 'delete_person' person.id %}">Delete</a>
+      </div>
+    </div>
+    
   </li>
   {% endfor %}
 </ul>

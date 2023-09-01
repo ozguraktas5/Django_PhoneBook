@@ -1,10 +1,11 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from django.http import HttpResponse
-from .models import Person, Category, Location
-from .forms import PersonForm, CategoryForm, LocationForm
+from django.http import HttpResponseRedirect
+from .models import Person, Category, Location, UploadImage
+from .forms import PersonForm, CategoryForm, LocationForm, UploadForm
 
 def home(request):
-    return render(request, "phonebook/home.html")
+    categories = Category.objects.all()
+    return render(request, "phonebook/home.html", {"categories": categories})
 def all_persons(request):
     persons = Person.objects.all()
     return render(request, 'phonebook/all_persons.html', {'persons': persons})
@@ -45,10 +46,10 @@ def lokasyon_ekle(request):
 def edit_person(request, person_id):
     person = get_object_or_404(Person, id=person_id)
     if request.method == "POST":
-        form = PersonForm(request.POST, instance=person)
+        form = PersonForm(request.POST, request.FILES, instance=person)
         if form.is_valid():
             form.save()
-            return redirect("all_persons.html")
+            return redirect("editperson")
     else:
         form = PersonForm(instance=person)
     return render(
@@ -67,11 +68,12 @@ def upload(request):
         if form.is_valid():
             model = UploadImage(image=request.FILES["image"])
             model.save()
-            return render(request, "books/success.html")
+            return render(request, "/phonebook/success.html/")
     else:
         form = UploadForm()
-    return render(request, "books/upload.html", {"form": form})
+    return render(request, "upload.html", {"form": form})
 
 def some_view(request):
     categories = Category.objects.all()
-    return render(request, "sidebar.html", {"categories": categories})
+    context = {"categories": categories}
+    return render(request, "sidebar.html", context)

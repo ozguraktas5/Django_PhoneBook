@@ -2,9 +2,9 @@
 
 {% block content %}
     <h3>Kişi Ekle</h3>
-    <form method="post" enctype="multipart/form-data">
+    <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit">Ekle</button>
+        <a class="kisi-ekle" href="{% url 'upload_image' %}">Ekle</a>
     </form>
 {% endblock %}

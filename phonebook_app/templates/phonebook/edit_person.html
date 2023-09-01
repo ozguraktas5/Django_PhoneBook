@@ -1,10 +1,21 @@
 {% extends 'base.html' %}
 
+{% load static %}
+
+{% block css_files %}
+  <link rel="stylesheet" href="{% static 'phonebook_app/css/style.css' %}" />
+{% endblock %}
+
+
 {% block content %}
     <h1>Düzenle: {{ person.first_name }} {{ person.last_name }}</h1>
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit">Güncelle</button>
+        <a href="{% url 'all_persons' %}">Güncelle</a>
     </form>
+{% endblock %}
+
+{% block js_files %} 
+    <script src="{% static 'phonebook_app/js/script.js' %}"></script>
 {% endblock %}

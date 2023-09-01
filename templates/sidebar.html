@@ -1,6 +1,23 @@
-<ul class="sidebar-menu">
-    {% for category in categories %}
-        <li>{{ category.name }}</li>
-    {% endfor %}
+{% load static %}
 
-</ul>
+{% block content %} 
+
+{% block css_files %}
+  <link rel="stylesheet" href="{% static 'phonebook_app/css/style.css' %}" />
+{% endblock %}
+
+<div class="list-group">
+    <a href="{% url 'phone_index' %}" class="list-group-item mb-3">Tüm Kategoriler</a>
+    {% for category in categories %}
+        <ul class="list-unstyled">
+            <li><a class="list-group-item">{{ category.name }}</a></li>
+        </ul>
+        
+    {% endfor %}
+</div>
+
+{% block js_files %} 
+    <script src="{% static 'phonebook_app/js/script.js' %}"></script>
+{% endblock %}
+
+{% endblock %}

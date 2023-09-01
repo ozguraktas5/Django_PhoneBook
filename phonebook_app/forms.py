@@ -34,3 +34,6 @@ class LocationForm(forms.ModelForm):
             "name": forms.TextInput(attrs={"class": "form-control", "required": "required"}),
                
         }
+        
+class UploadForm(forms.Form):
+    image = forms.ImageField()

@@ -8,7 +8,7 @@ class Category(models.Model):
         return f"{self.name}"
     
     def save(self, *args, **kwargs):
-       super().save(*args,**kwargs)
+        super().save(*args,**kwargs)
     
     class Meta:
         verbose_name = "Kategori"
@@ -19,7 +19,7 @@ class Person(models.Model):
     last_name = models.CharField(max_length=75)
     phone_number = models.CharField(max_length=30)
     email = models.EmailField(blank=True, null=True)
-    image = models.ImageField(upload_to='uploads', blank=True, null=True)
+    image = models.ImageField(upload_to='uploads/persons', blank=True, null=True)
     address = models.CharField(max_length=200, blank=True, null=True)
     categories = models.ManyToManyField(Category)
     
@@ -43,3 +43,6 @@ class Location(models.Model):
     class Meta:
         verbose_name = "Lokasyon"
         verbose_name_plural = "Lokasyonlar"
+        
+class UploadImage(models.Model):
+    image = models.ImageField(upload_to="persons")
