@@ -30,22 +30,6 @@ ul>li{
     margin-bottom: 2rem;
 }
 
-.edit-button{
-    padding: 0.5rem 1rem;
-    background-color: blueviolet;
-    border-radius: 5px;
-    color: aliceblue;
-    text-decoration: none;
-}
-
-.delete-button{
-    padding: 0.5rem 1rem;
-    background-color: red;
-    border-radius: 5px;
-    color: aliceblue;
-    text-decoration: none;
-}
-
 .list-group{
     list-style-type: none;
 }

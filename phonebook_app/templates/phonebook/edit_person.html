@@ -9,10 +9,10 @@
 
 {% block content %}
     <h1>Düzenle: {{ person.first_name }} {{ person.last_name }}</h1>
-    <form method="post">
+    <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.as_p }}
-        <a href="{% url 'all_persons' %}">Güncelle</a>
+        <button type="submit" class="btn btn-primary">Güncelle</button>
     </form>
 {% endblock %}
 

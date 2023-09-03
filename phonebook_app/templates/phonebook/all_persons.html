@@ -13,15 +13,15 @@
   {% for person in persons %}
   <li>
     <div class="left">
-      <img class="image" src="{{ person.image.url }}"/>
+      <img src="{{ person.image.url }}" class="image"/>
     </div>
     <div class="right">
       <div class="info">
         {{ person.first_name }} {{ person.last_name }} - {{ person.phone_number }}
       </div>
       <div class="buttons">
-        <a class="edit-button" href="{% url 'edit_person' person.id %}">Edit</a>
-        <a class="delete-button" href="{% url 'delete_person' person.id %}">Delete</a>
+        <a href="{% url 'edit_person' person.id %}" class="btn btn-primary">Edit</a>
+        <a href="{% url 'delete_person' person.id %}" class="btn btn-danger">Delete</a>
       </div>
     </div>
     

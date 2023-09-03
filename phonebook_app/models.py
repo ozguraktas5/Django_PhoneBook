@@ -19,7 +19,7 @@ class Person(models.Model):
     last_name = models.CharField(max_length=75)
     phone_number = models.CharField(max_length=30)
     email = models.EmailField(blank=True, null=True)
-    image = models.ImageField(upload_to='uploads/persons', blank=True, null=True)
+    image = models.ImageField(upload_to='images/', default="")
     address = models.CharField(max_length=200, blank=True, null=True)
     categories = models.ManyToManyField(Category)
     
@@ -28,21 +28,21 @@ class Person(models.Model):
     
     def save(self, *args, **kwargs):
         super().save(*args,**kwargs)
-    
+        
     class Meta:
         verbose_name = "Kişi"
         verbose_name_plural = "Kişiler"
         ordering = ['id']
     
 class Location(models.Model):
-    name = models.CharField(max_length=75)
+     name = models.CharField(max_length=75)
     
-    def __str__(self):
-        return f"{self.name}"
+     def __str__(self):
+          return f"{self.name}"
     
-    class Meta:
-        verbose_name = "Lokasyon"
-        verbose_name_plural = "Lokasyonlar"
+     class Meta:
+         verbose_name = "Lokasyon"
+         verbose_name_plural = "Lokasyonlar"
         
 class UploadImage(models.Model):
     image = models.ImageField(upload_to="persons")

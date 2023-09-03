@@ -5,10 +5,10 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path("", views.home, name="phone_index"),
-    path("allpersons/", views.all_persons, name="all_persons"),
-    path("kisiekle/", views.kisi_ekle),
-    path("kategoriekle/", views.kategori_ekle),
-    path("lokasyonekle/", views.lokasyon_ekle),
+    path("allpersons/", views.all_persons, name="allpersons"),
+    path("kisiekle/", views.kisi_ekle, name="kisiekle"),
+    path("kategoriekle/", views.kategori_ekle,name="kategoriekle"),
+    # path("lokasyonekle/<int:person_id>/", views.lokasyon_ekle, name="lokasyonekle"),
     path('editperson/<int:person_id>/', views.edit_person, name='edit_person'),
     path('deleteperson/<int:person_id>/', views.delete_person, name='delete_person'),
     path("upload/", views.upload, name="upload_image"),

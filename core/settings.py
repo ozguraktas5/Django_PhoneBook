@@ -41,6 +41,8 @@ INSTALLED_APPS = [
 
     #myapps
     "phonebook_app",
+    
+    
 ]
 
 MIDDLEWARE = [
@@ -124,7 +126,7 @@ USE_TZ = True
 STATIC_URL = "static/"
 
 STATICFILES_DIRS = [
-    BASE_DIR / "static",
+    BASE_DIR / "static/",
 ]
 
 MEDIA_ROOT = BASE_DIR / "uploads"
@@ -136,3 +138,5 @@ MEDIA_URL = "/media/"
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+

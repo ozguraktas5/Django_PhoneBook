@@ -1,7 +1,8 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from django.http import HttpResponseRedirect
+from django.http import HttpResponse
 from .models import Person, Category, Location, UploadImage
 from .forms import PersonForm, CategoryForm, LocationForm, UploadForm
+
 
 def home(request):
     categories = Category.objects.all()
@@ -12,10 +13,10 @@ def all_persons(request):
 
 def kisi_ekle(request):
     if request.method == "POST":
-        form = PersonForm(request.POST)
+        form = PersonForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-        return redirect("all_persons")
+            return redirect("/allpersons")
     else:
         form = PersonForm()
     return render(request, "phonebook/kisi_ekle.html", {"form": form})
@@ -26,41 +27,41 @@ def kategori_ekle(request):
         form = CategoryForm(request.POST)
         if form.is_valid():
             form.save()
-        return redirect("all_persons")
+        return redirect("allpersons")
     else:
         form = CategoryForm()
     return render(request, "phonebook/kategori_ekle.html", {"form": form})
 
 
-def lokasyon_ekle(request):
-    if request.method == "POST":
-        form = LocationForm(request.POST)
-        if form.is_valid():
-            form.save()
-        return redirect("all_persons")
-    else:
-        form = LocationForm()
-    return render(request, "phonebook/lokasyon_ekle.html", {"form": form})
+# def lokasyon_ekle(request, person_id):
+#     person = get_object_or_404(Person, id=person_id)
+#     if request.method == "POST":
+#         form = LocationForm(request.POST)
+#         if form.is_valid():
+#             person.location = form.cleaned_data['location']
+#             person.save()
+#             return redirect("allpersons")
+#     else:
+#         form = LocationForm()
+#     return render(request, "phonebook/lokasyon_ekle.html", {"form": form, "person": person})
 
 
 def edit_person(request, person_id):
-    person = get_object_or_404(Person, id=person_id)
-    if request.method == "POST":
-        form = PersonForm(request.POST, request.FILES, instance=person)
-        if form.is_valid():
-            form.save()
-            return redirect("editperson")
-    else:
-        form = PersonForm(instance=person)
-    return render(
-        request, "phonebook/edit_person.html", {"form": form, "person": person}
-    )
+      person = get_object_or_404(Person, id=person_id)
+      if request.method == "POST":
+          form = PersonForm(request.POST, request.FILES, instance=person)
+          if form.is_valid():
+              form.save()
+              return redirect("allpersons")
+      else:
+          form = PersonForm(instance=person)
+      return render(request, "phonebook/edit_person.html", {"form": form})
 
 
 def delete_person(request, person_id):
     person = get_object_or_404(Person, id=person_id)
     person.delete()
-    return redirect("all_persons")
+    return redirect("allpersons")
 
 def upload(request):
     if request.method == "POST":
@@ -68,12 +69,12 @@ def upload(request):
         if form.is_valid():
             model = UploadImage(image=request.FILES["image"])
             model.save()
-            return render(request, "/phonebook/success.html/")
+            return render(request, "phonebook/success.html")
     else:
         form = UploadForm()
-    return render(request, "upload.html", {"form": form})
+    return render(request, "phonebook/upload.html", {"form": form})
 
 def some_view(request):
     categories = Category.objects.all()
     context = {"categories": categories}
-    return render(request, "sidebar.html", context)
+    return render(request, "../templates/sidebar.html", context)
