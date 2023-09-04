@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block css_files %}
+  <link rel="stylesheet" href="{% static 'phonebook_app/css/style.css' %}" />
+{% endblock %}
+
+{% block content %}
+    <h2>Kategori Düzenle: {{ category_name }}</h2>
+     <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="btn btn-primary" type="submit">Kaydet</button>
+    </form>
+    
+{% endblock %}
+
+{% block js_files %} 
+    <script src="{% static 'phonebook_app/js/script.js' %}"></script>
+{% endblock %}

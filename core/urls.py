@@ -18,11 +18,13 @@ from django.contrib import admin
 from django.urls import include, path
 
 
+
 # http://127.0.0.1:8000/
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("phonebook_app/", include("phonebook_app.urls")),
     path("", include("phonebook_app.urls")),
+   
     
     
     

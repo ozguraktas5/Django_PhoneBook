@@ -1,23 +1,23 @@
+.content{
+    margin: 0 2rem;
+}
+
 .row{
     margin-top: 2rem;
 }
 
 ul{
     list-style-type: none;
-    margin: 0;
+    display: flex !important;
+    align-items: center !important;
     
-}
-
-ul>li{
-    display: flex;
-    gap: 1rem;
-    margin-bottom: 1rem;
 }
 
 .image{
     width: 100px;
-    height: 150px;
+    height: 100px;
     object-fit: cover;
+    border-radius: 50%;
 }
 
 .right{
@@ -32,4 +32,12 @@ ul>li{
 
 .list-group{
     list-style-type: none;
+}
+
+.list-group-item:first-child{
+    margin: 0 !important;
+}
+
+.buttons{
+    margin: 0 !important;
 }

@@ -1,6 +1,6 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %} 
 
-{% load static %}
+{% load static %} 
 
 {% block css_files %}
   <link rel="stylesheet" href="{% static 'phonebook_app/css/style.css' %}" />
@@ -8,24 +8,43 @@
 
 {% block content %}
 
-<h1>Tüm Kişiler</h1>
-<ul>
-  {% for person in persons %}
-  <li>
-    <div class="left">
-      <img src="{{ person.image.url }}" class="image"/>
-    </div>
-    <div class="right">
-      <div class="info">
-        {{ person.first_name }} {{ person.last_name }} - {{ person.phone_number }}
-      </div>
-      <div class="buttons">
-        <a href="{% url 'edit_person' person.id %}" class="btn btn-primary">Edit</a>
-        <a href="{% url 'delete_person' person.id %}" class="btn btn-danger">Delete</a>
-      </div>
-    </div>
-    
-  </li>
-  {% endfor %}
-</ul>
+<table class="table table-striped table-bordered">
+  <thead>
+    <tr>
+      <th scope="col">Image</th>
+      <th scope="col">First Name</th>
+      <th scope="col">Last Name</th>
+      <th scope="col">Phone Number</th>
+      <th scope="col">City</th>
+      <th scope="col">Neighbourhood</th>
+      <th scope="col">Category</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for person in persons %}
+    <tr>
+      <th scope="row"><img src="{{ person.image.url }}" class="image" /></th>
+      <td>{{ person.first_name }}</td>
+      <td>{{ person.last_name }}</td>
+      <td>{{ person.phone_number }}</td>
+      <td>{{ person.location.city }}</td>
+      <td>{{ person.location.neighbourhood }}</td>
+      
+      <td><div class="buttons mt-3">
+        <a href="{% url 'edit_person' person.id %}" class="btn btn-primary btn-sm"
+          >Edit</a
+        >
+        <a href="{% url 'delete_person' person.id %}" class="btn btn-danger btn-sm"
+          >Delete</a
+        >
+        <a href="{% url 'lokasyonekle' person.id %}" class="btn btn-secondary btn-sm"
+          >Add Location</a
+        >
+      </div></td>
+      
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
 {% endblock %}

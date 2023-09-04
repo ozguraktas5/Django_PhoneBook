@@ -9,10 +9,8 @@
 <div class="list-group">
     <a href="{% url 'phone_index' %}" class="list-group-item mb-3">Tüm Kategoriler</a>
     {% for category in categories %}
-        <ul class="list-unstyled">
-            <li><a class="list-group-item">{{ category.name }}</a></li>
-        </ul>
         
+        <a class="list-group-item">{{ category.name }}</a></li>
     {% endfor %}
 </div>
 

@@ -26,14 +26,15 @@ class CategoryForm(forms.ModelForm):
                
         }
         
-# class LocationForm(forms.ModelForm):
-#     class Meta:
-#         model = Location
-#         fields = ['name']
-#         widgets = {
-#             "name": forms.TextInput(attrs={"class": "form-control", "required": "required"}),
+class LocationForm(forms.ModelForm):
+      class Meta:
+          model = Location
+          fields = ['city', 'neighbourhood']
+          widgets = {
+              "city": forms.TextInput(attrs={"class": "form-control", "required": "required"}),
+              "neighbourhood": forms.TextInput(attrs={"class": "form-control", "required": "required"}),
                
-#         }
-        
+          }
+
 class UploadForm(forms.Form):
     image = forms.ImageField()
