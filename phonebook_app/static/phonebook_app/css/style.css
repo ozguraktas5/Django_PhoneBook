@@ -1,5 +1,5 @@
 .content{
-    margin: 0 2rem;
+    margin: 0 3rem;
 }
 
 .row{
@@ -14,8 +14,8 @@ ul{
 }
 
 .image{
-    width: 100px;
-    height: 100px;
+    width: 75px;
+    height: 75px;
     object-fit: cover;
     border-radius: 50%;
 }

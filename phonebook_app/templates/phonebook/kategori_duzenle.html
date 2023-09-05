@@ -7,11 +7,11 @@
 {% endblock %}
 
 {% block content %}
-    <h2>Kategori Düzenle: {{ category_name }}</h2>
+    <h2>Kategori Düzenle: {{ category.name }}</h2>
      <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.as_p }}
-        <button class="btn btn-primary" type="submit">Kaydet</button>
+        <button type="submit" class="btn btn-primary">Kaydet</button>
     </form>
     
 {% endblock %}
